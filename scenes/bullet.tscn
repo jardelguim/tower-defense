@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://36ymxub3yso8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h1aey"]
+
+[node name="Bullet" type="RigidBody3D" unique_id=1542996605]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=1497075554]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=304221940]
+shape = SubResource("SphereShape3D_h1aey")

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://jki2xqwjxxhm"]
+
+[ext_resource type="Script" uid="uid://d3t7puxlao6eq" path="res://src/tower.gd" id="1_ay4al"]
+[ext_resource type="ArrayMesh" uid="uid://bg60x2ko2mj10" path="res://assets/models/tower.obj" id="2_ktxwe"]
+[ext_resource type="Texture2D" uid="uid://ckjpccm75bww7" path="res://assets/checkboard.png" id="3_qrbg1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jfguu"]
+albedo_color = Color(0.7411765, 0.3019608, 0.3019608, 1)
+albedo_texture = ExtResource("3_qrbg1")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2x682"]
+radius = 1.0
+height = 4.03125
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ktxwe"]
+radius = 15.0
+
+[node name="Tower" type="StaticBody3D" unique_id=733665471]
+script = ExtResource("1_ay4al")
+detection_range = 25.0
+
+[node name="Model" type="MeshInstance3D" parent="." unique_id=1480325377]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+mesh = ExtResource("2_ktxwe")
+surface_material_override/0 = SubResource("StandardMaterial3D_jfguu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2568420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.015625, 0)
+shape = SubResource("CapsuleShape3D_2x682")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1604080392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 3)
+
+[node name="RangeArea" type="Area3D" parent="." unique_id=1175565705]
+
+[node name="RangeCollision" type="CollisionShape3D" parent="RangeArea" unique_id=306687578]
+unique_name_in_owner = true
+shape = SubResource("SphereShape3D_ktxwe")
