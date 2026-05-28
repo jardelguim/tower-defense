@@ -1,0 +1,45 @@
+name: Export
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.6.3
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup templates
+        run: |
+          mkdir -p ~/.local/share/godot/export_templates
+          mv /root/.local/share/godot/export_templates/4.6.3.stable \
+             ~/.local/share/godot/export_templates/4.6.3.stable
+
+      - name: Export Windows
+        run: |
+          mkdir -p build/windows
+          godot --headless --export-release "Windows" build/windows/TowerDefense.exe
+
+      - name: Export Linux
+        run: |
+          mkdir -p build/linux
+          godot --headless --export-release "Linux" build/linux/TowerDefense.x86_64
+          chmod +x build/linux/TowerDefense.x86_64
+
+      - name: Zip artifacts
+        run: |
+          cd build
+          zip -r windows.zip windows/
+          zip -r linux.zip linux/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build/windows.zip
+            build/linux.zip
