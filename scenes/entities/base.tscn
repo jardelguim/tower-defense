@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/entities/base.gd" id="1_base"]
+
+[sub_resource type="BoxMesh" id="mesh_base"]
+size = Vector3(3.0, 3.0, 3.0)
+
+[sub_resource type="StandardMaterial3D" id="mat_base"]
+albedo_color = Color(0.2, 0.4, 0.9, 1)
+
+[node name="Base" type="Node3D"]
+script = ExtResource("1_base")
+max_health = 100
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("mesh_base")
+surface_material_override/0 = SubResource("mat_base")

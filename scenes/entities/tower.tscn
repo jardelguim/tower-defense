@@ -1,0 +1,43 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://src/entities/tower.gd" id="1_tower"]
+[ext_resource type="ArrayMesh" uid="uid://bg60x2ko2mj10" path="res://assets/models/tower.obj" id="2_mesh"]
+[ext_resource type="Texture2D" uid="uid://ckjpccm75bww7" path="res://assets/checkboard.png" id="3_tex"]
+
+[sub_resource type="StandardMaterial3D" id="mat_tower"]
+albedo_color = Color(0.7411765, 0.3019608, 0.3019608, 1)
+albedo_texture = ExtResource("3_tex")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="CapsuleShape3D" id="shape_body"]
+radius = 1.0
+height = 4.03125
+
+[sub_resource type="SphereShape3D" id="shape_range"]
+radius = 15.0
+
+[node name="Tower" type="StaticBody3D"]
+script = ExtResource("1_tower")
+
+[node name="Model" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+mesh = ExtResource("2_mesh")
+surface_material_override/0 = SubResource("mat_tower")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.015625, 0)
+shape = SubResource("shape_body")
+
+[node name="FirePoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="RangeArea" type="Area3D" parent="."]
+
+[node name="RangeCollision" type="CollisionShape3D" parent="RangeArea"]
+unique_name_in_owner = true
+shape = SubResource("shape_range")

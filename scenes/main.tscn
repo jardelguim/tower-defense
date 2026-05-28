@@ -1,38 +1,49 @@
 [gd_scene format=3 uid="uid://66qmexouhev0"]
 
-[ext_resource type="PackedScene" uid="uid://jki2xqwjxxhm" path="res://scenes/tower.tscn" id="2_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://2ukfjl52jcym" path="res://scenes/mob.tscn" id="2_sugp2"]
-[ext_resource type="PackedScene" uid="uid://djs2de8drk3yg" path="res://scenes/floor.tscn" id="3_jyhfs"]
+[ext_resource type="PackedScene" path="res://scenes/levels/level_01.tscn" id="1_level"]
+[ext_resource type="PackedScene" path="res://scenes/entities/base.tscn" id="2_base"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="3_hud"]
+[ext_resource type="Script" uid="uid://c1pjrst1gj482" path="res://src/managers/WaveManager.gd" id="4_wave"]
+[ext_resource type="Script" uid="uid://cqw8s1v7ho3wu" path="res://src/managers/InputManager.gd" id="5_input"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
+[sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="Sky" id="Sky_jyhfs"]
-sky_material = SubResource("ProceduralSkyMaterial_sugp2")
+[sub_resource type="Sky" id="sky"]
+sky_material = SubResource("sky_mat")
 
-[sub_resource type="Environment" id="Environment_tbgi4"]
-sky = SubResource("Sky_jyhfs")
+[sub_resource type="Environment" id="env"]
+sky = SubResource("sky")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="Main" type="Node3D" unique_id=1263791665]
+[node name="Main" type="Node3D" unique_id=1229005855]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1433096209]
-environment = SubResource("Environment_tbgi4")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=468334847]
+environment = SubResource("env")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=250624451]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1841265255]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="MainCamera" type="Camera3D" parent="." unique_id=1308806152]
+[node name="MainCamera" type="Camera3D" parent="." unique_id=1912780336]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 16.506235, 39.055573)
 fov = 45.0
 
-[node name="Tower" parent="." unique_id=733665471 instance=ExtResource("2_0wfyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20000002, 0)
+[node name="Level" parent="." unique_id=1629910397 instance=ExtResource("1_level")]
 
-[node name="Mob" parent="." unique_id=85273282 instance=ExtResource("2_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -1)
+[node name="EnemyContainer" type="Node3D" parent="." unique_id=1599838029]
 
-[node name="Floor" parent="." unique_id=1993558677 instance=ExtResource("3_jyhfs")]
+[node name="TowerContainer" type="Node3D" parent="." unique_id=746048563]
+
+[node name="Base" parent="." unique_id=900368601 instance=ExtResource("2_base")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+
+[node name="WaveManager" type="Node" parent="." unique_id=1297066725]
+script = ExtResource("4_wave")
+
+[node name="InputManager" type="Node" parent="." unique_id=2100827919]
+script = ExtResource("5_input")
+
+[node name="UI" parent="." unique_id=493436237 instance=ExtResource("3_hud")]

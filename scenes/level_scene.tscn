@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://bjhiwt813yu41"]
-
-[ext_resource type="PackedScene" uid="uid://dq8jtkkcffmqx" path="res://assets/New Folder/level.blend" id="1_386oa"]
-
-[node name="LevelScene" type="Node3D" unique_id=326714435]
-
-[node name="level" parent="." unique_id=1845020818 instance=ExtResource("1_386oa")]
