@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://i0ud143d7ulu"]
+
+[ext_resource type="ArrayMesh" uid="uid://bo7c3nbaysa67" path="res://assets/models/towers/tower_base.obj" id="1_kqpjx"]
+[ext_resource type="Texture2D" uid="uid://ckjpccm75bww7" path="res://assets/textures/checkboard.png" id="2_ffgkq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jt02"]
+albedo_color = Color(0, 0.40784314, 0.8156863, 1)
+albedo_texture = ExtResource("2_ffgkq")
+uv1_scale = Vector3(10, 10, 10)
+
+[node name="TowerBase" type="MeshInstance3D" unique_id=97124863]
+mesh = ExtResource("1_kqpjx")
+surface_material_override/0 = SubResource("StandardMaterial3D_1jt02")

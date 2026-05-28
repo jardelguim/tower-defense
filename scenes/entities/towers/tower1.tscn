@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://r50j75eqnmoc"]
+
+[ext_resource type="Script" uid="uid://dfjuobno5f1uv" path="res://src/entities/tower.gd" id="1_tmwma"]
+[ext_resource type="Resource" uid="uid://digbv3aef6rdt" path="res://scenes/entities/towers/tower1_data.tres" id="2_le6ro"]
+[ext_resource type="ArrayMesh" uid="uid://dhbm7bwekwfdv" path="res://assets/models/towers/tower1.obj" id="3_omevh"]
+[ext_resource type="Texture2D" uid="uid://ckjpccm75bww7" path="res://assets/textures/checkboard.png" id="4_jrdak"]
+[ext_resource type="PackedScene" uid="uid://i0ud143d7ulu" path="res://scenes/entities/towers/const/Tower_base.tscn" id="5_tmwma"]
+[ext_resource type="PackedScene" uid="uid://262neb36cmdq" path="res://scenes/entities/towers/const/Tower_range_area.tscn" id="6_le6ro"]
+
+[sub_resource type="StandardMaterial3D" id="mat_tower"]
+albedo_color = Color(0.7411765, 0.3019608, 0.3019608, 1)
+albedo_texture = ExtResource("4_jrdak")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="CapsuleShape3D" id="shape_body"]
+radius = 1.0
+height = 3.6578126
+
+[node name="Tower" type="StaticBody3D" unique_id=1715713068 node_paths=PackedStringArray("model", "fire_point")]
+script = ExtResource("1_tmwma")
+data = ExtResource("2_le6ro")
+model = NodePath("Tower_body")
+fire_point = NodePath("FirePoint")
+
+[node name="Tower_body" type="MeshInstance3D" parent="." unique_id=1641631595]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+mesh = ExtResource("3_omevh")
+surface_material_override/0 = SubResource("mat_tower")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=198353396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4867189, 0)
+shape = SubResource("shape_body")
+
+[node name="FirePoint" type="Marker3D" parent="." unique_id=455409164]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3467379, -1.7)
+
+[node name="TowerBase" parent="." unique_id=97124863 instance=ExtResource("5_tmwma")]
+
+[node name="RangeArea" parent="." unique_id=539343825 instance=ExtResource("6_le6ro")]

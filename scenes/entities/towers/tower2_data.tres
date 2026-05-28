@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TowerData" format=3 uid="uid://do1sif8i0kmfv"]
+
+[ext_resource type="Script" uid="uid://biqf6knqhbiep" path="res://src/resources/TowerData.gd" id="1_a80ri"]
+
+[resource]
+script = ExtResource("1_a80ri")
+display_name = "Double Tower"
+damage = 5.0
+attack_speed = 0.5
+range = 20.0
+metadata/_custom_type_script = "uid://biqf6knqhbiep"

@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" path="res://scenes/levels/level_01.tscn" id="1_level"]
 [ext_resource type="PackedScene" path="res://scenes/entities/base.tscn" id="2_base"]
+[ext_resource type="PackedScene" uid="uid://r50j75eqnmoc" path="res://scenes/entities/towers/tower1.tscn" id="2_tefeu"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" uid="uid://dt8u7jydwq5xg" path="res://scenes/entities/towers/tower2.tscn" id="3_o6xl0"]
 [ext_resource type="Script" uid="uid://c1pjrst1gj482" path="res://src/managers/WaveManager.gd" id="4_wave"]
 [ext_resource type="Script" uid="uid://cqw8s1v7ho3wu" path="res://src/managers/InputManager.gd" id="5_input"]
 
@@ -36,6 +38,11 @@ fov = 45.0
 [node name="EnemyContainer" type="Node3D" parent="." unique_id=1599838029]
 
 [node name="TowerContainer" type="Node3D" parent="." unique_id=746048563]
+
+[node name="Tower1" parent="TowerContainer" unique_id=1715713068 instance=ExtResource("2_tefeu")]
+
+[node name="Tower2" parent="TowerContainer" unique_id=97476924 instance=ExtResource("3_o6xl0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -18)
 
 [node name="Base" parent="." unique_id=900368601 instance=ExtResource("2_base")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
