@@ -8,6 +8,8 @@ on:
 jobs:
   export:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     container:
       image: barichello/godot-ci:4.6.3
 
