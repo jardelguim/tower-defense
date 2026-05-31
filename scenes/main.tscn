@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://66qmexouhev0"]
 
-[ext_resource type="PackedScene" path="res://scenes/levels/level_01.tscn" id="1_level"]
+[ext_resource type="PackedScene" uid="uid://jtbeawds1qop" path="res://scenes/levels/level_01.tscn" id="1_level"]
 [ext_resource type="PackedScene" path="res://scenes/entities/base.tscn" id="2_base"]
 [ext_resource type="PackedScene" uid="uid://r50j75eqnmoc" path="res://scenes/entities/towers/tower1.tscn" id="2_tefeu"]
+[ext_resource type="PackedScene" uid="uid://rp1uev857rq3" path="res://scenes/entities/mobs/enemy1.tscn" id="2_tipki"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="3_hud"]
 [ext_resource type="PackedScene" uid="uid://dt8u7jydwq5xg" path="res://scenes/entities/towers/tower2.tscn" id="3_o6xl0"]
 [ext_resource type="Script" uid="uid://c1pjrst1gj482" path="res://src/managers/WaveManager.gd" id="4_wave"]
@@ -36,6 +37,9 @@ fov = 45.0
 [node name="Level" parent="." unique_id=1629910397 instance=ExtResource("1_level")]
 
 [node name="EnemyContainer" type="Node3D" parent="." unique_id=1599838029]
+
+[node name="Enemy1" parent="EnemyContainer" unique_id=372954658 instance=ExtResource("2_tipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -14)
 
 [node name="TowerContainer" type="Node3D" parent="." unique_id=746048563]
 

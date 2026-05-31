@@ -1,8 +1,8 @@
-class_name Enemy extends Node3D
+class_name Enemy extends RigidBody3D
 
 @export var data: EnemyData
 
-var health: float = 0.0
+var current_health: float = 0.0
 var progress: float = 0.0
 
 var _path_follow: PathFollow3D = null

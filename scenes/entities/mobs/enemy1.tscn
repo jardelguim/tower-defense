@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://rp1uev857rq3"]
+
+[ext_resource type="Script" uid="uid://dehm1wtoxd3is" path="res://src/entities/enemy.gd" id="1_neanb"]
+[ext_resource type="ArrayMesh" uid="uid://b4lugtxv62ts3" path="res://assets/models/mobs/mob1.obj" id="2_p16yl"]
+
+[sub_resource type="StandardMaterial3D" id="mat_enemy"]
+albedo_color = Color(0.8, 0.2, 0.2, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n68fe"]
+radius = 1.5571289
+height = 5.2578125
+
+[node name="Enemy1" type="RigidBody3D" unique_id=372954658]
+script = ExtResource("1_neanb")
+
+[node name="Model" type="MeshInstance3D" parent="." unique_id=1652275385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = ExtResource("2_p16yl")
+surface_material_override/0 = SubResource("mat_enemy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=186194670]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_n68fe")

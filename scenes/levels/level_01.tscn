@@ -1,30 +1,28 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://jtbeawds1qop"]
+
+[ext_resource type="ArrayMesh" uid="uid://cngrr3gl4i6g3" path="res://assets/models/level1/floor.obj" id="1_i2aat"]
+[ext_resource type="Texture2D" uid="uid://ckjpccm75bww7" path="res://assets/textures/checkboard.png" id="2_2djvx"]
 
 [sub_resource type="Curve3D" id="path_curve"]
-_data = {
-"points": PackedVector3Array(-20.0, 0.0, 0.0, 0.0, 0.0, 0.0, -20.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 20.0, 0.0, 0.0, 0.0, 0.0, 0.0),
-"tilt": PackedFloat32Array(0.0, 0.0, 0.0)
-}
 
-[sub_resource type="StandardMaterial3D" id="mat_floor"]
-albedo_color = Color(0.21, 0.21, 0.21, 1)
-
-[sub_resource type="BoxMesh" id="mesh_floor"]
-material = SubResource("mat_floor")
-size = Vector3(50, 0.1, 50)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uvc87"]
+albedo_color = Color(0.08312137, 0.1598421, 0.24431166, 1)
+albedo_texture = ExtResource("2_2djvx")
+uv1_scale = Vector3(20, 20, 20)
 
 [sub_resource type="BoxShape3D" id="shape_floor"]
-size = Vector3(50, 0.1, 50)
+size = Vector3(61, 0.1, 81)
 
-[node name="Level01" type="Node3D"]
+[node name="Level01" type="Node3D" unique_id=1679422645]
 
-[node name="Path" type="Path3D" parent="."]
+[node name="Path" type="Path3D" parent="." unique_id=1431173385]
 curve = SubResource("path_curve")
 
-[node name="Floor" type="StaticBody3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="." unique_id=94350430]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource("mesh_floor")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1607576593]
+mesh = ExtResource("1_i2aat")
+surface_material_override/0 = SubResource("StandardMaterial3D_uvc87")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=965358487]
 shape = SubResource("shape_floor")
