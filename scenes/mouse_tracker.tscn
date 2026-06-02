@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://5dydsfjyby8h"]
+
+[ext_resource type="Script" uid="uid://4irs1odyl2hv" path="res://src/managers/MouseTracker.gd" id="1_sjgd2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_u83s2"]
+
+[node name="MouseTracker" type="Node3D" unique_id=1130773841]
+script = ExtResource("1_sjgd2")
+
+[node name="Marker" type="MeshInstance3D" parent="." unique_id=912806535]
+mesh = SubResource("SphereMesh_u83s2")

@@ -1,12 +1,8 @@
 [gd_scene format=3 uid="uid://66qmexouhev0"]
 
 [ext_resource type="PackedScene" uid="uid://jtbeawds1qop" path="res://scenes/levels/level_01.tscn" id="1_level"]
-[ext_resource type="PackedScene" path="res://scenes/entities/base.tscn" id="2_base"]
-[ext_resource type="PackedScene" uid="uid://r50j75eqnmoc" path="res://scenes/entities/towers/tower1.tscn" id="2_tefeu"]
-[ext_resource type="PackedScene" uid="uid://rp1uev857rq3" path="res://scenes/entities/mobs/enemy1.tscn" id="2_tipki"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="3_hud"]
-[ext_resource type="PackedScene" uid="uid://dt8u7jydwq5xg" path="res://scenes/entities/towers/tower2.tscn" id="3_o6xl0"]
-[ext_resource type="Script" uid="uid://c1pjrst1gj482" path="res://src/managers/WaveManager.gd" id="4_wave"]
+[ext_resource type="PackedScene" uid="uid://5dydsfjyby8h" path="res://scenes/mouse_tracker.tscn" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://cqw8s1v7ho3wu" path="res://src/managers/InputManager.gd" id="5_input"]
 
 [sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
@@ -31,30 +27,16 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="MainCamera" type="Camera3D" parent="." unique_id=1912780336]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 16.506235, 39.055573)
-fov = 45.0
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 47.506233, 72.05557)
+fov = 35.0
 
 [node name="Level" parent="." unique_id=1629910397 instance=ExtResource("1_level")]
 
-[node name="EnemyContainer" type="Node3D" parent="." unique_id=1599838029]
-
-[node name="Enemy1" parent="EnemyContainer" unique_id=372954658 instance=ExtResource("2_tipki")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -14)
-
-[node name="TowerContainer" type="Node3D" parent="." unique_id=746048563]
-
-[node name="Tower1" parent="TowerContainer" unique_id=1715713068 instance=ExtResource("2_tefeu")]
-
-[node name="Tower2" parent="TowerContainer" unique_id=97476924 instance=ExtResource("3_o6xl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -18)
-
-[node name="Base" parent="." unique_id=900368601 instance=ExtResource("2_base")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
-
-[node name="WaveManager" type="Node" parent="." unique_id=1297066725]
-script = ExtResource("4_wave")
-
-[node name="InputManager" type="Node" parent="." unique_id=2100827919]
+[node name="InputManager" type="Node" parent="." unique_id=2100827919 node_paths=PackedStringArray("camera")]
 script = ExtResource("5_input")
+camera = NodePath("../MainCamera")
 
 [node name="UI" parent="." unique_id=493436237 instance=ExtResource("3_hud")]
+
+[node name="MouseTracker" parent="." unique_id=1130773841 node_paths=PackedStringArray("camera") instance=ExtResource("4_jyhfs")]
+camera = NodePath("../MainCamera")

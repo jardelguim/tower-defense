@@ -1,18 +1,25 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://7felffkuudik"]
 
-[ext_resource type="Script" path="res://src/entities/base.gd" id="1_base"]
+[ext_resource type="Script" uid="uid://bybvmievee63w" path="res://src/entities/base.gd" id="1_base"]
+[ext_resource type="Texture2D" uid="uid://ckjpccm75bww7" path="res://assets/textures/checkboard.png" id="2_5xbr6"]
 
 [sub_resource type="BoxMesh" id="mesh_base"]
-size = Vector3(3.0, 3.0, 3.0)
+size = Vector3(10, 10, 10)
 
 [sub_resource type="StandardMaterial3D" id="mat_base"]
 albedo_color = Color(0.2, 0.4, 0.9, 1)
+albedo_texture = ExtResource("2_5xbr6")
+uv1_scale = Vector3(8.49, 8.49, 8.49)
 
-[node name="Base" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_5xbr6"]
+size = Vector3(10, 10, 10)
+
+[node name="Base" type="StaticBody3D" unique_id=1847697557]
 script = ExtResource("1_base")
-max_health = 100
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1560617145]
 mesh = SubResource("mesh_base")
 surface_material_override/0 = SubResource("mat_base")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=295572290]
+shape = SubResource("BoxShape3D_5xbr6")

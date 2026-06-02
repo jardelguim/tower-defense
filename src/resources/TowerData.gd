@@ -5,6 +5,7 @@ class_name TowerData
 @export var damage: float = 10.0
 @export var attack_speed: float = 1.0
 @export_range(5.0, 30.0) var range: float = 15.0
+@export_range(0.1, 5.0) var turn_rate: float = 1
 @export var cost: int = 50
 @export var scene: PackedScene
 @export var bullet_scene: PackedScene

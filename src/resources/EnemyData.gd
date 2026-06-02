@@ -1,4 +1,5 @@
-class_name EnemyData extends Resource
+extends Resource
+class_name EnemyData 
 
 @export var display_name: String = "Basic Enemy"
 @export var max_health: float = 100.0

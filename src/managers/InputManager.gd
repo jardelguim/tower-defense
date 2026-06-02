@@ -1,7 +1,6 @@
 class_name InputManager extends Node
 
 @export var camera: Camera3D
-@export var tower_container: Node3D
 
 var selected_tower: TowerData = null
 

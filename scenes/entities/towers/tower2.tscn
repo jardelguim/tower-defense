@@ -7,35 +7,35 @@
 [ext_resource type="PackedScene" uid="uid://i0ud143d7ulu" path="res://scenes/entities/towers/const/Tower_base.tscn" id="4_tpfox"]
 [ext_resource type="PackedScene" uid="uid://262neb36cmdq" path="res://scenes/entities/towers/const/Tower_range_area.tscn" id="6_p1pwr"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4x220"]
-radius = 1.0
-height = 5.4
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6in86"]
-albedo_color = Color(0.38431373, 1, 0.2784314, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1pwr"]
+albedo_color = Color(0.3882353, 0.7372549, 0.13333334, 1)
 albedo_texture = ExtResource("3_p1pwr")
 uv1_scale = Vector3(10, 10, 10)
 
-[node name="Tower2" type="StaticBody3D" unique_id=97476924 node_paths=PackedStringArray("model")]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tpfox"]
+radius = 1.0
+height = 3.6578126
+
+[node name="Tower" type="StaticBody3D" unique_id=1871615890 node_paths=PackedStringArray("model", "fire_point", "range_area")]
 script = ExtResource("1_q26gp")
 data = ExtResource("2_p1pwr")
 model = NodePath("Tower_body")
+fire_point = NodePath("FirePoint")
+range_area = NodePath("RangeArea")
 metadata/_custom_type_script = "uid://dfjuobno5f1uv"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1348144284]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
-shape = SubResource("CapsuleShape3D_4x220")
-
-[node name="Tower_body" type="MeshInstance3D" parent="." unique_id=1325800624]
+[node name="Tower_body" type="MeshInstance3D" parent="." unique_id=853547538]
 mesh = ExtResource("2_eyin7")
-surface_material_override/0 = SubResource("StandardMaterial3D_6in86")
+surface_material_override/0 = SubResource("StandardMaterial3D_p1pwr")
 
-[node name="FirePoint1" type="Marker3D" parent="." unique_id=1266172150]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3467379, 1.7)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1681226229]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4867189, 0)
+shape = SubResource("CapsuleShape3D_tpfox")
 
-[node name="FirePoint2" type="Marker3D" parent="." unique_id=1864077801]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1467378, 2.2)
+[node name="FirePoint" type="Marker3D" parent="." unique_id=1049899173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3467379, -1.7)
 
 [node name="TowerBase" parent="." unique_id=97124863 instance=ExtResource("4_tpfox")]
 
 [node name="RangeArea" parent="." unique_id=539343825 instance=ExtResource("6_p1pwr")]
+unique_name_in_owner = true

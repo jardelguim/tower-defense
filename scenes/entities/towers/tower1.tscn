@@ -16,14 +16,14 @@ uv1_scale = Vector3(10, 10, 10)
 radius = 1.0
 height = 3.6578126
 
-[node name="Tower" type="StaticBody3D" unique_id=1715713068 node_paths=PackedStringArray("model", "fire_point")]
+[node name="Tower" type="StaticBody3D" unique_id=1715713068 node_paths=PackedStringArray("model", "fire_point", "range_area")]
 script = ExtResource("1_tmwma")
 data = ExtResource("2_le6ro")
 model = NodePath("Tower_body")
 fire_point = NodePath("FirePoint")
+range_area = NodePath("RangeArea")
 
 [node name="Tower_body" type="MeshInstance3D" parent="." unique_id=1641631595]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 mesh = ExtResource("3_omevh")
 surface_material_override/0 = SubResource("mat_tower")
 
@@ -32,8 +32,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4867189, 0)
 shape = SubResource("shape_body")
 
 [node name="FirePoint" type="Marker3D" parent="." unique_id=455409164]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3467379, -1.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3467379, 1.9000001)
 
 [node name="TowerBase" parent="." unique_id=97124863 instance=ExtResource("5_tmwma")]
 
 [node name="RangeArea" parent="." unique_id=539343825 instance=ExtResource("6_le6ro")]
+unique_name_in_owner = true

@@ -1,28 +1,104 @@
 [gd_scene format=3 uid="uid://jtbeawds1qop"]
 
 [ext_resource type="ArrayMesh" uid="uid://cngrr3gl4i6g3" path="res://assets/models/level1/floor.obj" id="1_i2aat"]
+[ext_resource type="ArrayMesh" uid="uid://xtth4bvouw5b" path="res://assets/models/level1/buildings.obj" id="1_uvc87"]
 [ext_resource type="Texture2D" uid="uid://ckjpccm75bww7" path="res://assets/textures/checkboard.png" id="2_2djvx"]
+[ext_resource type="ArrayMesh" uid="uid://b6anutrd4jqk3" path="res://assets/models/level1/road.obj" id="2_qdh5e"]
+[ext_resource type="PackedScene" uid="uid://7felffkuudik" path="res://scenes/entities/base.tscn" id="5_qdh5e"]
+[ext_resource type="Script" uid="uid://c1pjrst1gj482" path="res://src/managers/WaveManager.gd" id="6_50wog"]
+[ext_resource type="PackedScene" uid="uid://r50j75eqnmoc" path="res://scenes/entities/towers/tower1.tscn" id="6_t0hvh"]
+[ext_resource type="PackedScene" uid="uid://rp1uev857rq3" path="res://scenes/entities/mobs/enemy1.tscn" id="7_1ey3t"]
+[ext_resource type="PackedScene" uid="uid://dt8u7jydwq5xg" path="res://scenes/entities/towers/tower2.tscn" id="7_kfebt"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qdh5e"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_50wog"]
+sky_material = SubResource("ProceduralSkyMaterial_qdh5e")
+
+[sub_resource type="Environment" id="Environment_1ey3t"]
+background_mode = 2
+sky = SubResource("Sky_50wog")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="Curve3D" id="path_curve"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -39.771732, 0, -0.3142241, 0, 0, -2, 0, 0, 2, -21.097874, 0, 0.7142216, -3, 0, 0, 3, 0, 0, -19.038761, 0, 20.963205, -2, 0, 0, 2, 0, 0, -6.1049156, 0, 20.893873, -4, 0, 2, 4, 0, -2, -4, 0, -15, -1.9, 0, -3.7, 1.9, 0, 3.7, 22, 0, -14, 0, 0, 0, 0, 0, 0, 23.07299, 0, 19.436975),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qdh5e"]
+albedo_color = Color(0.16268507, 0.41370192, 0.25875762, 1)
+albedo_texture = ExtResource("2_2djvx")
+uv1_scale = Vector3(33.205, 33.205, 33.205)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_50wog"]
+albedo_color = Color(0.11858138, 0.11858138, 0.11858138, 1)
+albedo_texture = ExtResource("2_2djvx")
+uv1_scale = Vector3(20.705, 20.705, 20.705)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uvc87"]
 albedo_color = Color(0.08312137, 0.1598421, 0.24431166, 1)
 albedo_texture = ExtResource("2_2djvx")
-uv1_scale = Vector3(20, 20, 20)
+uv1_scale = Vector3(200, 200, 200)
 
 [sub_resource type="BoxShape3D" id="shape_floor"]
-size = Vector3(61, 0.1, 81)
+size = Vector3(81, 1.08, 62)
 
 [node name="Level01" type="Node3D" unique_id=1679422645]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2098676658]
+environment = SubResource("Environment_1ey3t")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=801805085]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
 [node name="Path" type="Path3D" parent="." unique_id=1431173385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 curve = SubResource("path_curve")
 
-[node name="Floor" type="StaticBody3D" parent="." unique_id=94350430]
+[node name="Mesh" type="Node3D" parent="." unique_id=1021373696]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1607576593]
+[node name="Buildings" type="MeshInstance3D" parent="Mesh" unique_id=137734833]
+mesh = ExtResource("1_uvc87")
+surface_material_override/0 = SubResource("StandardMaterial3D_qdh5e")
+
+[node name="Road" type="MeshInstance3D" parent="Mesh" unique_id=99919445]
+mesh = ExtResource("2_qdh5e")
+surface_material_override/0 = SubResource("StandardMaterial3D_50wog")
+
+[node name="Floor" type="StaticBody3D" parent="Mesh" unique_id=94350430]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/Floor" unique_id=1607576593]
 mesh = ExtResource("1_i2aat")
 surface_material_override/0 = SubResource("StandardMaterial3D_uvc87")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=965358487]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Floor" unique_id=965358487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10000001, 0)
 shape = SubResource("shape_floor")
+
+[node name="Base" parent="." unique_id=1715730043 instance=ExtResource("5_qdh5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 5, 21)
+
+[node name="TowerContainer" type="Node3D" parent="." unique_id=1572001204]
+
+[node name="Tower" parent="TowerContainer" unique_id=1715713068 instance=ExtResource("6_t0hvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.159056, 0, 12.332652)
+
+[node name="Tower2" parent="TowerContainer" unique_id=1871615890 instance=ExtResource("7_kfebt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -6)
+
+[node name="EnemyContainer" type="Node3D" parent="." unique_id=1170104817]
+
+[node name="WaveManager" type="Node" parent="." unique_id=1798315454 node_paths=PackedStringArray("path", "enemy_container")]
+script = ExtResource("6_50wog")
+enemy_scene = ExtResource("7_1ey3t")
+path = NodePath("../Path")
+enemy_container = NodePath("../EnemyContainer")
+metadata/_custom_type_script = "uid://c1pjrst1gj482"
